@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg"
+    android:fitsSystemWindows="true"
+    tools:context="com.xiaojinzi.code.modular.login.view.LoginAct">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColorHint="@color/white"
+        android:layout_marginTop="240px">
+
+        <EditText
+            android:id="@+id/et_account"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="240px"
+            android:gravity="center"
+            android:hint="手机号"
+            android:text="15857913627"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/til_account"
+        android:layout_centerHorizontal="true"
+        android:textColorHint="@color/white"
+        android:layout_marginTop="120px">
+
+        <!--用户密码部分-->
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:gravity="center"
+            android:hint="密码"
+            android:text="123"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/bt_login"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/til_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="180px"
+        android:background="@color/red1"
+        android:text="登录"
+        android:textColor="@color/white"
+        android:textSize="@dimen/app_text_size_two" />
+
+    <TextView
+        android:id="@+id/tv_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/til_password"
+        android:layout_below="@+id/til_password"
+        android:paddingBottom="20px"
+        android:paddingLeft="30px"
+        android:paddingTop="30px"
+        android:text="注册"
+        android:textColor="@color/white"
+        android:textSize="@dimen/app_text_size_one" />
+
+
+</RelativeLayout>

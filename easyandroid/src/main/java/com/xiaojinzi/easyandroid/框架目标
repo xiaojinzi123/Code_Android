@@ -1,0 +1,5 @@
+目标:
+1.解放findViewById和setOnClickListener这样的代码 viewInject库实现了
+2.解放Activity中逻辑太多的问题,这个如何解放？
+
+把一个activity分解成多个类支持复杂的界面,这几个类都引用了成员变量的类,方便操作数据

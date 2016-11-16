@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="14px"
+    android:paddingLeft="@dimen/app_size_four"
+    android:paddingRight="@dimen/app_size_four"
+    android:paddingTop="14px">
+
+    <!--头像-->
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/icon"
+        android:layout_width="48px"
+        android:layout_height="48px"
+        android:layout_marginRight="@dimen/app_size_one"
+        app:roundAsCircle="true" />
+
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/icon">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="小金子"
+            android:textSize="@dimen/size8" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_name"
+            android:layout_marginTop="6px"
+            android:text="8-25"
+            android:textSize="@dimen/size8" />
+
+        <ImageView
+            android:layout_width="32px"
+            android:layout_height="32px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_header"
+        android:layout_marginTop="@dimen/app_size_one"
+        android:layout_toRightOf="@+id/icon"
+        android:text="一个四级未过的渣渣一个四级未过的渣渣一个四级未过的渣渣一个四级未过的渣渣一个四级未过的渣渣一个四级未过的渣渣一个四级未过的渣渣一个四级未过的渣渣一个四级未过的渣渣"
+        android:textColor="@color/black" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tv_content"
+        android:layout_marginTop="14px"
+        android:layout_toRightOf="@+id/icon"
+        android:background="@color/gray_six" />
+
+</RelativeLayout>

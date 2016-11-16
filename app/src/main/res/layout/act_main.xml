@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_app_color"
+    android:fitsSystemWindows="true"
+    tools:context=".modular.main.view.MainAct">
+
+    <!--左右滑动的View-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rl_act_main_foot_container"
+        android:background="@color/white"
+        android:overScrollMode="never" />
+
+    <!--左上角的菜单图标-->
+    <ImageView
+        android:id="@+id/iv_menu"
+        android:layout_width="88px"
+        android:layout_height="@dimen/titlebar_height"
+        android:padding="28px"
+        android:src="@mipmap/menu_white1" />
+
+    <!--底部的导航栏-->
+    <RelativeLayout
+        android:id="@+id/rl_act_main_foot_container"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_alignParentBottom="true"
+        android:background="@color/gray_six">
+
+        <LinearLayout
+            android:id="@+id/ll_act_main_foot_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <!--首页-->
+            <RelativeLayout
+                android:id="@+id/rl_home_container"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:id="@+id/iv_home"
+                        android:layout_width="40px"
+                        android:layout_height="40px"
+                        android:src="@mipmap/home1_selected" />
+
+                    <TextView
+                        android:id="@+id/tv_home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_home"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/size0"
+                        android:text="首页"
+                        android:textColor="@color/common_app_color"
+                        android:textSize="16px" />
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <!--发现-->
+            <RelativeLayout
+                android:id="@+id/rl_find_container"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:id="@+id/iv_find"
+                        android:layout_width="40px"
+                        android:layout_height="40px"
+                        android:src="@mipmap/find1_unselected" />
+
+                    <TextView
+                        android:id="@+id/tv_find"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_find"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/size0"
+                        android:text="发现"
+                        android:textColor="@color/black"
+                        android:textSize="16px" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <!--正中间的加号-->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:id="@+id/iv_post"
+                        android:layout_width="40px"
+                        android:layout_height="40px" />
+
+                    <TextView
+                        android:id="@+id/tv_post"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_post"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/size0"
+                        android:text="发布"
+                        android:textColor="@color/black"
+                        android:textSize="16px" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <!--消息-->
+            <RelativeLayout
+                android:id="@+id/rl_message_container"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:id="@+id/iv_message"
+                        android:layout_width="40px"
+                        android:layout_height="40px"
+                        android:src="@mipmap/message1_unselected" />
+
+                    <TextView
+                        android:id="@+id/tv_message"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_message"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/size0"
+                        android:text="消息"
+                        android:textColor="@color/black"
+                        android:textSize="16px" />
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <!--我的-->
+            <RelativeLayout
+                android:id="@+id/rl_more_container"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:id="@+id/iv_more"
+                        android:layout_width="40px"
+                        android:layout_height="40px"
+                        android:src="@mipmap/more1_unselected" />
+
+                    <TextView
+                        android:id="@+id/tv_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_more"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/size0"
+                        android:text="更多"
+                        android:textColor="@color/black"
+                        android:textSize="16px" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_add"
+        android:layout_width="84px"
+        android:layout_height="84px"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40px"
+        android:src="@mipmap/add1" />
+
+</RelativeLayout>

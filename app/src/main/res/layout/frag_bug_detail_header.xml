@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_big_part"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/app_size_one"
+        android:paddingLeft="@dimen/app_size_four"
+        android:paddingRight="@dimen/app_size_four">
+
+        <RelativeLayout
+            android:id="@+id/rl_dynamics_content_item_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <!--用户的图标-->
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/sdv"
+                android:layout_width="80px"
+                android:layout_height="80px"
+                android:layout_marginRight="30px"
+                fresco:actualImageScaleType="focusCrop"
+                fresco:roundAsCircle="true" />
+
+            <!--用户名-->
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10px"
+                android:layout_toRightOf="@+id/sdv"
+                android:text="去吧皮卡丘"
+                android:textColor="@color/black"
+                android:textSize="24px" />
+
+            <TextView
+                android:id="@+id/tv_pl_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_dynamics_content_item_date"
+                android:layout_marginTop="14px"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/fillet_stroke_app_color_bg1"
+                android:padding="4px"
+                android:paddingLeft="6px"
+                android:paddingRight="6px"
+                android:text="Java"
+                android:textSize="24px" />
+
+            <!--显示时间的文本-->
+            <TextView
+                android:id="@+id/tv_dynamics_content_item_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10px"
+                android:text="2016-5-18"
+                android:textSize="16px" />
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_dynamics_content_item_content_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_dynamics_content_item_header"
+            android:layout_marginTop="28px">
+
+            <!--文章内容-->
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.2"
+                android:text="生化危机: 保护伞军团》将于本月23日正是解锁,而作为一款主打竞技射击的线上多人游戏,联网性生化危机: 保护伞军团》将于本月23日正是解锁,而作为一款主打竞技射击的线上多人游戏,联网性生化危机: 保护伞军团》将于本月23日正是解锁,而作为一款主打竞技射击的线上多人游戏,联网性"
+                android:textColor="@color/black" />
+
+        </FrameLayout>
+
+        <!--用于显示图片-->
+        <com.xiaojinzi.code.util.widget.CommonNineView
+            android:id="@+id/cnv_images"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fl_dynamics_content_item_content_container"
+            android:layout_marginTop="32px" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

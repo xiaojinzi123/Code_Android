@@ -1,0 +1,50 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--标题栏的高度,不包括上面的状态栏-->
+    <dimen name="titlebar_height">88px</dimen>
+
+    <!--标题栏中的标题文字的大小-->
+    <dimen name="titlebar_title_text_size">34px</dimen>
+
+    <!--标题栏中的除了标题之外的文字的大小-->
+    <dimen name="titlebar_text_size">24px</dimen>
+
+    <!--标题栏左右两边的内边距-->
+    <dimen name="titlebar_left_and_right_padding">24px</dimen>
+    <!--返回图标的上下边距-->
+    <dimen name="titlebar_iv_top_and_bottom_padding">20px</dimen>
+
+    <!--关于返回按钮的-->
+    <dimen name="iv_back_width">32px</dimen>
+    <dimen name="iv_back_height">88px</dimen>
+
+
+    <dimen name="size0">10px</dimen>
+    <dimen name="size1">11px</dimen>
+    <dimen name="size2">12px</dimen>
+    <dimen name="size3">13px</dimen>
+    <dimen name="size4">14px</dimen>
+    <dimen name="size5">15px</dimen>
+    <dimen name="size6">16px</dimen>
+    <dimen name="size7">17px</dimen>
+    <dimen name="size8">18px</dimen>
+    <dimen name="size9">19px</dimen>
+    <dimen name="size10">20px</dimen>
+
+
+    <!--几乎用在每个界面,比如左内边距,右内边距-->
+    <dimen name="app_size_one">24px</dimen>
+    <dimen name="app_size_two">28px</dimen>
+    <dimen name="app_size_three">32px</dimen>
+    <dimen name="app_size_four">34px</dimen>
+
+    <!--三种常用的字体大小-->
+    <dimen name="app_text_size_one">24px</dimen>
+    <dimen name="app_text_size_two">28px</dimen>
+    <dimen name="app_text_size_three">32px</dimen>
+    <dimen name="app_text_size_four">34px</dimen>
+
+</resources>

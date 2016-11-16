@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg"
+    android:fitsSystemWindows="true"
+    tools:context="com.xiaojinzi.code.modular.register.view.RegisterAct">
+
+
+    <EditText
+        android:id="@+id/et_account"
+        android:layout_width="380px"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="240px"
+        android:backgroundTint="@color/white"
+        android:gravity="center"
+        android:hint="手机号"
+        android:focusable="false"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="@dimen/app_text_size_two" />
+
+    <!--用户密码部分-->
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="380px"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/et_account"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120px"
+        android:backgroundTint="@color/white"
+        android:gravity="center"
+        android:hint="密码"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="@dimen/app_text_size_two" />
+
+
+    <Button
+        android:id="@+id/bt_register"
+        android:layout_width="380px"
+        android:layout_height="80px"
+        android:layout_below="@+id/et_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="180px"
+        android:background="@color/red1"
+        android:text="注册"
+        android:textColor="@color/white"
+        android:textSize="@dimen/app_text_size_two" />
+
+
+</RelativeLayout>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="left"
+    android:background="@color/gray_six">
+
+    <!--菜单的头部-->
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="360px">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/header_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/icon"
+            android:layout_width="160px"
+            android:layout_height="160px"
+            android:layout_above="@+id/tv_user_name"
+            android:layout_marginLeft="@dimen/app_size_one"
+            app:roundAsCircle="true"
+            app:roundingBorderColor="@color/white"
+            app:roundingBorderWidth="2dp" />
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/app_size_one"
+            android:text="小金子爱音乐哦"
+            android:textColor="@color/white"
+            android:textSize="@dimen/app_text_size_three" />
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/app_size_one"
+            android:background="@drawable/fillet_stroke_white_bg1"
+            android:gravity="center_horizontal"
+            android:padding="4px"
+            android:paddingLeft="14px"
+            android:paddingRight="14px">
+
+            <ImageView
+                android:id="@+id/iv_qiandao"
+                android:layout_width="24px"
+                android:layout_height="24px"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/yiqiandao_gray1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10px"
+                android:layout_toRightOf="@+id/iv_qiandao"
+                android:text="签到"
+                android:textColor="@color/white" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_setting"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="设置"
+            android:textColor="@color/black" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50px"
+            android:background="@color/gray_six" />
+
+        <TextView
+            android:id="@+id/tv_exit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="退出应用"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+</RelativeLayout>

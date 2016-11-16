@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/rl_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titlebar_height"
+        android:background="@color/common_app_color">
+
+        <LinearLayout
+            android:layout_width="250px"
+            android:layout_height="48px"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18px"
+            android:background="@drawable/fillet_bg1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_not_resolved"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/fillet_left_solid_bg1"
+                android:gravity="center"
+                android:text="未解决"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tv_solved"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/fillet_right_solid_bg1"
+                android:gravity="center"
+                android:text="已解决"
+                android:textColor="#88FFFFFF" />
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="88px"
+            android:layout_height="88px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/app_size_one"
+            android:padding="24px"
+            android:src="@mipmap/search_white1" />
+
+    </RelativeLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tl_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_titlebar"
+        app:tabGravity="center"
+        app:tabIndicatorColor="@color/red1"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/red1"
+        app:tabTextAppearance="@style/MyCustomTabTextAppearance"
+        app:tabTextColor="@color/black" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/sfl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tl_category">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="14px"
+            android:background="@color/gray_six"
+            android:overScrollMode="never" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</RelativeLayout>
