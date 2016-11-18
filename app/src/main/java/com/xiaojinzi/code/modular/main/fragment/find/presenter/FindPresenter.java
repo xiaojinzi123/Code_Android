@@ -1,6 +1,7 @@
 package com.xiaojinzi.code.modular.main.fragment.find.presenter;
 
 import com.xiaojinzi.code.AppConfig;
+import com.xiaojinzi.code.AppInfo;
 import com.xiaojinzi.code.common.bean.BlogDynamics;
 import com.xiaojinzi.code.modular.base.BaseNetWorkResult;
 import com.xiaojinzi.code.modular.main.fragment.find.view.IFindView;
@@ -23,7 +24,9 @@ public class FindPresenter {
 
     public void getDynamics(){
 
-        Call<BaseNetWorkResult<List<BlogDynamics>>> call = AppConfig.netWorkService.getFindDynamics(0);
+        Call<BaseNetWorkResult<List<BlogDynamics>>> call = AppConfig.netWorkService.getFindDynamics(
+                0
+        );
         call.enqueue(new CallBackAdapter<List<BlogDynamics>>(view) {
             @Override
             public void onResponse(List<BlogDynamics> dynamicses) {

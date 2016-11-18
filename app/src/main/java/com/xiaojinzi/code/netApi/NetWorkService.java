@@ -30,7 +30,10 @@ public interface NetWorkService {
      */
     @FormUrlEncoded
     @POST("user/login")
-    Call<BaseNetWorkResult<User>> login(@Field("phoneNumber") String phoneNumber, @Field("password") String password);
+    Call<BaseNetWorkResult<User>> login(
+            @Field("phoneNumber") String phoneNumber,
+            @Field("password") String password
+    );
 
     /**
      * 注册
@@ -41,7 +44,10 @@ public interface NetWorkService {
      */
     @FormUrlEncoded
     @POST("user/register")
-    Call<BaseNetWorkResult<User>> register(@Field("phoneNumber") String phoneNumber, @Field("password") String password);
+    Call<BaseNetWorkResult<User>> register(
+            @Field("phoneNumber") String phoneNumber,
+            @Field("password") String password
+    );
 
 
     /**
@@ -66,7 +72,9 @@ public interface NetWorkService {
      */
     @FormUrlEncoded
     @POST("dynamics/queryForBlogList")
-    Call<BaseNetWorkResult<List<BlogDynamics>>> getFindDynamics(@Field("timestamp") long timestamp);
+    Call<BaseNetWorkResult<List<BlogDynamics>>> getFindDynamics(
+            @Field("timestamp") long timestamp
+    );
 
     /**
      * 获取所有的编程语言
@@ -74,7 +82,8 @@ public interface NetWorkService {
      * @return
      */
     @POST("proLan/queryAllProLan")
-    Call<BaseNetWorkResult<List<ProLan>>> queryAllProLan();
+    Call<BaseNetWorkResult<List<ProLan>>> queryAllProLan(
+    );
 
 
     /**
@@ -83,7 +92,8 @@ public interface NetWorkService {
      * @return
      */
     @POST("adv/queryAllAdv")
-    Call<BaseNetWorkResult<List<Adv>>> getAllAdv();
+    Call<BaseNetWorkResult<List<Adv>>> getAllAdv(
+    );
 
     /**
      * 获取所有人气明星
@@ -91,7 +101,8 @@ public interface NetWorkService {
      * @return
      */
     @POST("popularStar/queryAllPopularStar")
-    Call<BaseNetWorkResult<List<PopularStar>>> getAllPopularStar();
+    Call<BaseNetWorkResult<List<PopularStar>>> getAllPopularStar(
+    );
 
     /**
      * 获取动态详情,能获取到内容
@@ -101,7 +112,9 @@ public interface NetWorkService {
      */
     @FormUrlEncoded
     @POST("dynamics/queryForBugById")
-    Call<BaseNetWorkResult<BugDynamics>> queryBugDynamicsById(@Field("dynamicsId") int dynamicsId);
+    Call<BaseNetWorkResult<BugDynamics>> queryBugDynamicsById(
+            @Field("dynamicsId") int dynamicsId
+    );
 
     /**
      * 加载动态的评论
@@ -112,6 +125,9 @@ public interface NetWorkService {
      */
     @FormUrlEncoded
     @POST("comment/queryForBugComment")
-    Call<BaseNetWorkResult<List<BugComment>>> queryBugComment(@Field("timestamp") long timestamp, @Field("dynamicsId") int dynamicsId);
+    Call<BaseNetWorkResult<List<BugComment>>> queryBugComment(
+            @Field("timestamp") long timestamp,
+            @Field("dynamicsId") int dynamicsId
+    );
 
 }

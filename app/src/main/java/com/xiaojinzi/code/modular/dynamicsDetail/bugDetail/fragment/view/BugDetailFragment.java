@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 
 import com.xiaojinzi.code.R;
 import com.xiaojinzi.code.common.bean.BugComment;
+import com.xiaojinzi.code.common.bean.BugDynamics;
 import com.xiaojinzi.code.modular.dynamicsDetail.bugDetail.fragment.adapter.CommentAdapter;
 import com.xiaojinzi.code.modular.dynamicsDetail.bugDetail.fragment.presenter.BugDetailPresenter;
 import com.xiaojinzi.code.modular.dynamicsDetail.bugDetail.view.BugDetailAct;
@@ -128,7 +129,7 @@ public class BugDetailFragment extends BaseViewPagerFragment implements IBugDeta
 
         header.setOnLoadDynamicsDetailListener(new Header.OnLoadDynamicsDetailListener() {
             @Override
-            public void onSuccess() {
+            public void onSuccess(BugDynamics bugDynamics) {
                 isLoadDynamicsDetailSuccess = true;
                 if (isLoadCommentSuccess) {
                     afterLoadDateComplete();

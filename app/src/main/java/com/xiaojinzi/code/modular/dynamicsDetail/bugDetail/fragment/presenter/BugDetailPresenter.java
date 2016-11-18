@@ -1,6 +1,7 @@
 package com.xiaojinzi.code.modular.dynamicsDetail.bugDetail.fragment.presenter;
 
 import com.xiaojinzi.code.AppConfig;
+import com.xiaojinzi.code.AppInfo;
 import com.xiaojinzi.code.common.bean.BugComment;
 import com.xiaojinzi.code.modular.base.BaseNetWorkResult;
 import com.xiaojinzi.code.modular.dynamicsDetail.bugDetail.fragment.view.IBugDetailFragmentView;
@@ -29,7 +30,10 @@ public class BugDetailPresenter {
      */
     public void loadBugComment(Integer dynamicsId, long timestamp) {
 
-        Call<BaseNetWorkResult<List<BugComment>>> call = AppConfig.netWorkService.queryBugComment(timestamp, dynamicsId);
+        Call<BaseNetWorkResult<List<BugComment>>> call = AppConfig.netWorkService.queryBugComment(
+                timestamp,
+                dynamicsId
+        );
 
         call.enqueue(new CallBackAdapter<List<BugComment>>(view) {
             @Override

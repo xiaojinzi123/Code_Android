@@ -1,6 +1,7 @@
 package com.xiaojinzi.code.modular.dynamicsDetail.bugDetail.fragment.presenter;
 
 import com.xiaojinzi.code.AppConfig;
+import com.xiaojinzi.code.AppInfo;
 import com.xiaojinzi.code.common.bean.BugDynamics;
 import com.xiaojinzi.code.modular.base.BaseNetWorkResult;
 import com.xiaojinzi.code.modular.dynamicsDetail.bugDetail.fragment.view.IHeaderView;
@@ -21,7 +22,9 @@ public class HeaderPresenter {
 
     public void queryDynamicsById(Integer dynamicsId){
 
-        Call<BaseNetWorkResult<BugDynamics>> call = AppConfig.netWorkService.queryBugDynamicsById(dynamicsId);
+        Call<BaseNetWorkResult<BugDynamics>> call = AppConfig.netWorkService.queryBugDynamicsById(
+                dynamicsId
+        );
 
         call.enqueue(new CallBackAdapter<BugDynamics>(view) {
             @Override

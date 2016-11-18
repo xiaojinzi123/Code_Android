@@ -122,7 +122,7 @@ public class Header implements IHeaderView {
         tv_content.setText(bugDynamics.getContent());
 
         if (onLoadDynamicsDetailListener != null) {
-            onLoadDynamicsDetailListener.onSuccess();
+            onLoadDynamicsDetailListener.onSuccess(bugDynamics);
         }
 
     }
@@ -139,7 +139,7 @@ public class Header implements IHeaderView {
     }
 
     public interface OnLoadDynamicsDetailListener {
-        void onSuccess();
+        void onSuccess(BugDynamics bugDynamics);
     }
 
     public void destory(){
