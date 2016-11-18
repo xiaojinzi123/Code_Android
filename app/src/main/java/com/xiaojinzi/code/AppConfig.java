@@ -24,7 +24,7 @@ public class AppConfig {
     /**
      * 项目的访问根路径
      */
-    public static final String APPPREFIX = "http://192.168.1.116:8080/code/app/";
+    public static final String APPPREFIX = "http://192.168.137.1:8080/code/app/";
 
     /**
      * 项目的网络对象

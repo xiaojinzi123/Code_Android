@@ -22,7 +22,7 @@
     <application
         android:name=".MyApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/app_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -40,13 +40,16 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".modular.main.view.MainAct" />
-        <activity android:name=".modular.login.view.LoginAct">
+
+        <activity android:name=".modular.login.view.LoginAct"
+            android:icon="@drawable/app_icon">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".modular.register.view.RegisterAct" />
         <activity android:name=".modular.dynamicsDetail.blogDetail.view.BlogDetailAct" />
         <activity android:name=".modular.dynamicsDetail.bugDetail.view.BugDetailAct" />
