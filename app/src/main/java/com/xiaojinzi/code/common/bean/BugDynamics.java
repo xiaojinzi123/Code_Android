@@ -7,4 +7,13 @@ package com.xiaojinzi.code.common.bean;
 public class BugDynamics extends Dynamics {
 
 
+    private BugComment bugComment;
+
+    public BugComment getBugComment() {
+        return bugComment;
+    }
+
+    public void setBugComment(BugComment bugComment) {
+        this.bugComment = bugComment;
+    }
 }

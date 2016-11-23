@@ -2,6 +2,7 @@ package com.xiaojinzi.code.modular.dynamicsDetail.bugDetail.fragment.adapter;
 
 import android.content.Context;
 import android.net.Uri;
+import android.view.View;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.xiaojinzi.code.R;
@@ -38,6 +39,9 @@ public class CommentAdapter extends CommonRecyclerViewAdapter<BugComment> {
 
         //显示内容
         h.setText(R.id.tv_content, entity.getContent());
+
+        //设置一经采纳图标的显示
+        h.setVisibility(R.id.iv_answer_icon, entity.isAnswer() ? View.VISIBLE : View.INVISIBLE);
 
     }
 

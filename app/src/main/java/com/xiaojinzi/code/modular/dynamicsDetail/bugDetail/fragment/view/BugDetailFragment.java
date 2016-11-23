@@ -71,16 +71,6 @@ public class BugDetailFragment extends BaseViewPagerFragment implements IBugDeta
      */
     private List<BugComment> commentList = new ArrayList<BugComment>();
 
-    /**
-     * 是否加载第一页的评论成功
-     */
-    private boolean isLoadCommentSuccess;
-
-    /**
-     * 是否加载动态详情成功了
-     */
-    private boolean isLoadDynamicsDetailSuccess;
-
     private BugDetailPresenter bugDetailPresenter = new BugDetailPresenter(this);
 
     @Override
@@ -118,22 +108,28 @@ public class BugDetailFragment extends BaseViewPagerFragment implements IBugDeta
         //加载动态详情
         header.loadDynamics(bugDynamicsId);
 
-        //加载动态的评论
-        bugDetailPresenter.loadBugComment(bugDynamicsId, 0);
-
     }
 
     @Override
     public void setOnlistener() {
         super.setOnlistener();
 
+        //加载详情成功之后
         header.setOnLoadDynamicsDetailListener(new Header.OnLoadDynamicsDetailListener() {
             @Override
             public void onSuccess(BugDynamics bugDynamics) {
-                isLoadDynamicsDetailSuccess = true;
-                if (isLoadCommentSuccess) {
-                    afterLoadDateComplete();
+
+                //获取正确答案
+                BugComment bugComment = bugDynamics.getBugComment();
+
+                if (bugComment != null) {
+                    bugComment.setAnswer(true);
+                    commentList.add(bugComment);
+                    adapter.notifyItemInserted(0);
                 }
+
+                //加载动态的评论
+                bugDetailPresenter.loadBugComment(bugDynamicsId, 0);
             }
         });
 
@@ -149,8 +145,6 @@ public class BugDetailFragment extends BaseViewPagerFragment implements IBugDeta
     protected void onDestoryData() {
         super.onDestoryData();
         header.destory();
-        isLoadDynamicsDetailSuccess = false;
-        isLoadCommentSuccess = false;
         adapter.notifyItemRangeRemoved(0, commentList.size());
         commentList.clear();
         rv.setVisibility(View.INVISIBLE);
@@ -160,13 +154,14 @@ public class BugDetailFragment extends BaseViewPagerFragment implements IBugDeta
 
     @Override
     public void onLoadBugCommentSuccess(List<BugComment> bugComments) {
-        AdapterNotify.notifyFreshData(this.commentList, bugComments, adapter);
-        isLoadCommentSuccess = true;
-        if (isLoadDynamicsDetailSuccess) {
-            afterLoadDateComplete();
-        }
+        filterAnswer(bugComments);
+        AdapterNotify.notifyAppendData(this.commentList, bugComments, adapter);
+        afterLoadDateComplete();
     }
 
+    /**
+     * 加载数据完成之后
+     */
     private void afterLoadDateComplete() {
         iv_loading.clearAnimation();
         rv.setVisibility(View.VISIBLE);
@@ -199,6 +194,25 @@ public class BugDetailFragment extends BaseViewPagerFragment implements IBugDeta
         }
         BugDetailAct bugDetailAct = (BugDetailAct) getActivity();
         bugDetailAct.setTitle(content);
+    }
+
+    /**
+     * 如果评论中也有正确答案,筛选出来,做个标记
+     *
+     * @param bugComments
+     */
+    private void filterAnswer(List<BugComment> bugComments) {
+        if (this.commentList.size() > 0 && this.commentList.get(0).isAnswer()) {
+            //拿到正确答案
+            BugComment answer = this.commentList.get(0);
+            int size = bugComments.size();
+            for (int i = 0; i < size; i++) {
+                BugComment bugComment = bugComments.get(i);
+                if (answer.getId().equals(bugComment.getId())) {
+                    bugComment.setAnswer(true);
+                }
+            }
+        }
     }
 
 }

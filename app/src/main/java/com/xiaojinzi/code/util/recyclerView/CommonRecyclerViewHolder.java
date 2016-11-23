@@ -100,6 +100,20 @@ public class CommonRecyclerViewHolder extends RecyclerView.ViewHolder {
      */
     public void setImage(int imgId, int imageId) {
         ((ImageView) getView(imgId)).setImageResource(imageId);
+        View v;
+
+    }
+
+    /**
+     * 设置控件是否可见
+     *
+     * @param resId
+     * @param visibility {@link View#VISIBLE} or
+     *                   {@link View#INVISIBLE} or
+     *                   {@link View#GONE}
+     */
+    public void setVisibility(int resId, int visibility) {
+        ((View) getView(resId)).setVisibility(visibility);
     }
 
 

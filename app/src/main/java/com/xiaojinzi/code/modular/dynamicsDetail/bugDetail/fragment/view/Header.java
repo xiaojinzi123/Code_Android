@@ -105,8 +105,10 @@ public class Header implements IHeaderView {
     @Override
     public void onLoadBugDynamicsSuccess(BugDynamics bugDynamics) {
 
+        //保存动态
         mBugDynamics = bugDynamics;
 
+        //拿到发动态的用户
         User user = bugDynamics.getUser();
 
         //设置头像

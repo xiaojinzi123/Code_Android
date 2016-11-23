@@ -30,7 +30,8 @@ public class AppConfig {
     /**
      * 项目的访问根路径
      */
-    public static final String APPPREFIX = "http://192.168.137.1:8080/code/app/";
+    public static final String APPPREFIX = "http://192.168.1.101:8080/code/app/";
+//    public static final String APPPREFIX = "http://192.168.137.1:8080/code/app/";
 
     /**
      * 项目的网络对象
@@ -71,8 +72,6 @@ public class AppConfig {
                             //拿到请求网址
                             String url = request.url().toString();
 
-                            L.s("AppConFig", url);
-
                             //如果不是注册登录的接口
                             if (!url.endsWith("user/login") && !url.endsWith("user/register")) {
 
@@ -99,6 +98,20 @@ public class AppConfig {
                                         .add(Constant.USERID_FLAG, AppInfo.user.getId() + "")
                                         .add(Constant.CLIENTTOKEN_FLAG, AppInfo.user.getClientToken())
                                         .build();
+
+                                StringBuffer sb = new StringBuffer();
+                                int size = formBody.size();
+                                for (int i = 0; i < size; i++) {
+                                    String name = formBody.name(i);
+                                    String value = formBody.value(i);
+                                    if (sb.length() == 0) {
+                                        sb.append(name + "=" + value);
+                                    } else {
+                                        sb.append("&" + name + "=" + value);
+                                    }
+                                }
+
+                                L.s("AppConFig", url + "?" + sb.toString());
 
                                 //生成请求
                                 request = new Request.Builder()
