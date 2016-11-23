@@ -1,7 +1,7 @@
 package com.xiaojinzi.code.autolayout;
 
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -9,7 +9,7 @@ import android.view.View;
 /**
  * Created by zhy on 15/11/19.
  */
-public class AutoLayoutFragmentActivity extends FragmentActivity {
+public class AutoLayoutFragmentActivity extends AppCompatActivity {
 
 	private static final String LAYOUT_LINEARLAYOUT = "LinearLayout";
 	private static final String LAYOUT_FRAMELAYOUT = "FrameLayout";

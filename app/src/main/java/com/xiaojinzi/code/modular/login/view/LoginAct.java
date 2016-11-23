@@ -14,6 +14,7 @@ import com.xiaojinzi.code.modular.main.view.MainAct;
 import com.xiaojinzi.code.modular.register.view.RegisterAct;
 import com.xiaojinzi.code.util.ActivityUtil;
 import com.xiaojinzi.viewinjection.annotation.Injection;
+import com.xiaojinzi.xtool.java.util.StringUtil;
 
 /**
  * 登陆的界面
