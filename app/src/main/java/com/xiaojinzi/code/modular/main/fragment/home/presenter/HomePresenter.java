@@ -38,6 +38,12 @@ public class HomePresenter {
             public void onResponse(List<BugDynamics> dynamicses) {
                 view.onLoadHomeDynamicsSuccess(dynamicses);
             }
+
+            @Override
+            public void onFail() {
+                view.onLoadHomeDynamicsFail("");
+            }
+
         });
 
     }
@@ -70,8 +76,7 @@ public class HomePresenter {
      * 获取所有的编程语言
      */
     public void getAllProLan() {
-        Call<BaseNetWorkResult<List<ProLan>>> call = AppConfig.netWorkService.queryAllProLan(
-        );
+        Call<BaseNetWorkResult<List<ProLan>>> call = AppConfig.netWorkService.queryAllProLan();
         call.enqueue(new CallBackAdapter<List<ProLan>>(view) {
             @Override
             public void onResponse(List<ProLan> proLans) {

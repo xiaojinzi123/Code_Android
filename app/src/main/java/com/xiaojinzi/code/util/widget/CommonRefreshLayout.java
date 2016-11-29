@@ -1,7 +1,9 @@
-package com.xiaojinzi.code.util;
+package com.xiaojinzi.code.util.widget;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
@@ -107,7 +109,7 @@ public class CommonRefreshLayout extends ViewGroup {
                 //如果之前是菜单整个显示的状态,切换为菜单不显示的状态,并通知监听者
                 if (currentHeaderMenuState == STATE_MENU_SHOWED) {
                     currentHeaderMenuState = STATE_MENU_UNSHOW;
-                    if (onRefreshListener != null) {
+                    if (onRefreshListener != null && currentHeaderMenuRefreshState == STATE_MENU_REFRESH_NORMAL) {
                         onRefreshListener.onHeaderCamcelPrepareRefresh();
                     }
                 }
@@ -117,13 +119,13 @@ public class CommonRefreshLayout extends ViewGroup {
                 //如果之前是菜单不显示的状态,切换为菜单显示的状态,并通知监听者
                 if (currentHeaderMenuState == STATE_MENU_UNSHOW) {
                     currentHeaderMenuState = STATE_MENU_SHOWED;
-                    if (onRefreshListener != null) {
+                    if (onRefreshListener != null && currentHeaderMenuRefreshState == STATE_MENU_REFRESH_NORMAL) {
                         onRefreshListener.onHeaderPrepareRefresh();
                     }
                 }
             }
 
-            if (onRefreshListener != null) {
+            if (onRefreshListener != null && currentHeaderMenuRefreshState == STATE_MENU_REFRESH_NORMAL) {
                 onRefreshListener.onPullPercentage(pullPercent);
             }
 
@@ -133,23 +135,30 @@ public class CommonRefreshLayout extends ViewGroup {
 
         @Override
         public void onViewReleased(View releasedChild, float xvel, float yvel) {
+
             //声明目标y
             int toValue;
 
             //如果没有滑出整个菜单,那么还原状态
             if (getScrollY() > -headerMenuHeight) {
                 toValue = 0;
-                currentHeaderMenuState = STATE_MENU_UNSHOW;
-                currentHeaderMenuRefreshState = STATE_MENU_REFRESH_NORMAL;
+                if (currentHeaderMenuRefreshState == STATE_MENU_REFRESH_NORMAL) {
+                    currentHeaderMenuState = STATE_MENU_UNSHOW;
+                    currentHeaderMenuRefreshState = STATE_MENU_REFRESH_NORMAL;
+                }
             } else {
                 //如果释放的时候整个菜单都滑动出来了,那么目标y就是菜单的top的位置
                 toValue = -headerMenuHeight;
-                currentHeaderMenuState = STATE_MENU_SHOWED;
-                //记录正在刷新
-                currentHeaderMenuRefreshState = STATE_MENU_REFRESH_NOW;
+
                 //通知监听者
-                if (onRefreshListener != null) {
+                if (onRefreshListener != null && currentHeaderMenuRefreshState == STATE_MENU_REFRESH_NORMAL) {
                     onRefreshListener.onHeaderRefresh();
+                }
+
+                if (currentHeaderMenuRefreshState == STATE_MENU_REFRESH_NORMAL) {
+                    currentHeaderMenuState = STATE_MENU_SHOWED;
+                    //记录正在刷新
+                    currentHeaderMenuRefreshState = STATE_MENU_REFRESH_NOW;
                 }
             }
             smothTo(toValue);
@@ -161,6 +170,24 @@ public class CommonRefreshLayout extends ViewGroup {
      * 滑动的工具类
      */
     private ViewDragHelper mDragger;
+
+    private Handler h = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            int what = msg.what;
+
+            currentHeaderMenuState = STATE_MENU_UNSHOW;
+            currentHeaderMenuRefreshState = STATE_MENU_REFRESH_NORMAL;
+            smothTo(0);
+
+            if (onRefreshListener != null) {
+                onRefreshListener.onHeaderRefreshComplete();
+            }
+
+        }
+    };
 
     /**
      * 当前的头部菜单的状态
@@ -230,9 +257,9 @@ public class CommonRefreshLayout extends ViewGroup {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (currentHeaderMenuRefreshState == STATE_MENU_REFRESH_NOW) {
-            return false;
-        }
+//        if (currentHeaderMenuRefreshState == STATE_MENU_REFRESH_NOW) {
+//            return false;
+//        }
         mDragger.processTouchEvent(event);
         return true;
     }
@@ -289,11 +316,11 @@ public class CommonRefreshLayout extends ViewGroup {
     }
 
     /**
-     * 设置刷新完成
+     * 设置刷新完成,但是这个刷新完成只是效果上的完成
+     * 所以你网络请求或者加载数据无论是成功还是失败都要调用这个方法让刷新的效果消失
      */
-    public void setOnRefreshComplete() {
-        currentHeaderMenuRefreshState = STATE_MENU_REFRESH_NORMAL;
-        smothTo(0);
+    public final void setOnRefreshComplete() {
+        h.sendEmptyMessageDelayed(0, 1000);
     }
 
     /**
@@ -339,11 +366,34 @@ public class CommonRefreshLayout extends ViewGroup {
         objectAnimator.start();
     }
 
+    /**
+     * 是否正在刷新
+     *
+     * @return
+     */
+    public boolean isFreshing() {
+        return currentHeaderMenuRefreshState == STATE_MENU_REFRESH_NOW;
+    }
 
     /**
      * 刷新的监听
      */
     public interface OnRefreshListener {
+
+        /**
+         * 准备刷新,在菜单整个滑动出来被调用
+         */
+        void onHeaderPrepareRefresh();
+
+        /**
+         * 头部刷新啦
+         */
+        void onHeaderRefresh();
+
+        /**
+         * 取消准备刷新,在菜单整个滑动出来之后,又滑动回去了
+         */
+        void onHeaderCamcelPrepareRefresh();
 
         /**
          * 拉拽的时候,菜单拉出来的部分占用整个菜单高度的百分比
@@ -353,19 +403,9 @@ public class CommonRefreshLayout extends ViewGroup {
         void onPullPercentage(float percent);
 
         /**
-         * 头部刷新啦
+         * 刷新效果完成的时候调用
          */
-        void onHeaderRefresh();
-
-        /**
-         * 准备刷新,在菜单整个滑动出来被调用
-         */
-        void onHeaderPrepareRefresh();
-
-        /**
-         * 取消准备刷新,在菜单整个滑动出来之后,又滑动回去了
-         */
-        void onHeaderCamcelPrepareRefresh();
+        void onHeaderRefreshComplete();
 
     }
 
@@ -379,6 +419,4 @@ public class CommonRefreshLayout extends ViewGroup {
     public void setOnRefreshListener(OnRefreshListener onRefreshListener) {
         this.onRefreshListener = onRefreshListener;
     }
-
-
 }

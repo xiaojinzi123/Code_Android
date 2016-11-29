@@ -12,19 +12,18 @@ import java.util.List;
 public interface IHomeView extends IBaseView {
 
     /**
-     * 加载动态成功
-     *
-     * @param dynamicses
-     */
-    void onLoadHomeDynamicsSuccess(List<BugDynamics> dynamicses);
-
-
-    /**
      * 加载所有的编程语言成功
      *
      * @param proLans
      */
     void onLoadProLanSuccess(List<ProLan> proLans);
+
+    /**
+     * 加载动态成功
+     *
+     * @param dynamicses
+     */
+    void onLoadHomeDynamicsSuccess(List<BugDynamics> dynamicses);
 
     /**
      * 加载更多动态成功
@@ -40,5 +39,6 @@ public interface IHomeView extends IBaseView {
      * @param s 失败的错误信息
      */
     void onLoadHomeDynamicsFail(String s);
+
 
 }

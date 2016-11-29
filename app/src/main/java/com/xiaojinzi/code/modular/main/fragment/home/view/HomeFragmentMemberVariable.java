@@ -11,6 +11,7 @@ import com.xiaojinzi.code.common.bean.BugDynamics;
 import com.xiaojinzi.code.common.bean.ProLan;
 import com.xiaojinzi.code.modular.base.DynamicsAdapter;
 import com.xiaojinzi.code.modular.base.LoadMoreFoot;
+import com.xiaojinzi.code.util.widget.CommonRefreshLayout;
 import com.xiaojinzi.viewinjection.annotation.Injection;
 
 import java.util.ArrayList;
@@ -41,8 +42,11 @@ public class HomeFragmentMemberVariable {
     @Injection(R.id.rv)
     RecyclerView rv;
 
+//    @Injection(R.id.sfl)
+//    SwipeRefreshLayout sfl;
+
     @Injection(R.id.sfl)
-    SwipeRefreshLayout sfl;
+    CommonRefreshLayout sfl;
 
     /**
      * 列表底部布局

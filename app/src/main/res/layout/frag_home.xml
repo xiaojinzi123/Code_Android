@@ -67,11 +67,14 @@
         app:tabTextAppearance="@style/MyCustomTabTextAppearance"
         app:tabTextColor="@color/black" />
 
-    <android.support.v4.widget.SwipeRefreshLayout
+    <com.xiaojinzi.code.util.widget.CommonRefreshLayout
         android:id="@+id/sfl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/gray_six"
         android:layout_below="@+id/tl_category">
+
+        <include layout="@layout/refresh" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv"
@@ -81,6 +84,6 @@
             android:background="@color/gray_six"
             android:overScrollMode="never" />
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </com.xiaojinzi.code.util.widget.CommonRefreshLayout>
 
 </RelativeLayout>

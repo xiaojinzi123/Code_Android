@@ -26,6 +26,7 @@ import com.xiaojinzi.code.util.AdapterNotify;
 import com.xiaojinzi.code.util.BaseViewPagerFragment;
 import com.xiaojinzi.code.util.recyclerView.CommonRecyclerViewAdapter;
 import com.xiaojinzi.code.util.widget.CommonNineView;
+import com.xiaojinzi.code.util.widget.CommonRefreshLayout;
 
 import java.util.List;
 
@@ -59,6 +60,8 @@ public class HomeFragment extends BaseViewPagerFragment implements IHomeView {
 
     private HomePresenter presenter = new HomePresenter(this);
 
+    private HeaderReFresh headerReFresh;
+
     @Override
     public int getLayoutId() {
         return R.layout.frag_home;
@@ -83,6 +86,18 @@ public class HomeFragment extends BaseViewPagerFragment implements IHomeView {
 
         hm.rv.setAdapter(hm.dynamicsAdapter);
 
+        //
+        headerReFresh = new HeaderReFresh(hm.sfl, hm.sfl){
+            @Override
+            public void onHeaderRefresh() {
+                super.onHeaderRefresh();
+                if (hm.dynamicsAdapter.getFootCounts() > 0) {
+                    hm.dynamicsAdapter.removeFootView(0, true);
+                }
+                presenter.getDynamics(hm.proLanId);
+            }
+        };
+
     }
 
     @Override
@@ -96,15 +111,14 @@ public class HomeFragment extends BaseViewPagerFragment implements IHomeView {
     public void setOnlistener() {
         super.setOnlistener();
 
-        hm.sfl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                if (hm.dynamicsAdapter.getFootCounts() > 0) {
-                    hm.dynamicsAdapter.removeFootView(0, true);
-                }
-                presenter.getDynamics(hm.proLanId);
-            }
-        });
+//        hm.sfl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//
+//            }
+//        });
+
+        hm.sfl.setOnRefreshListener(headerReFresh);
 
         //编程语言的选中回调用
         hm.tl_category.addOnTabSelectedListener(new OnTabSelectedListenerAdapter() {
@@ -120,7 +134,6 @@ public class HomeFragment extends BaseViewPagerFragment implements IHomeView {
                 if (hm.dynamicsAdapter.getFootCounts() > 0) {
                     hm.dynamicsAdapter.removeFootView(0, true);
                 }
-                hm.sfl.setRefreshing(true);
                 presenter.getDynamics(hm.proLanId);
             }
         });
@@ -183,7 +196,7 @@ public class HomeFragment extends BaseViewPagerFragment implements IHomeView {
 
                     boolean b = !ViewCompat.canScrollVertically(hm.rv, 1);
                     //如果已经不可以向下滑动了,就去加载更多
-                    if (b && !hm.sfl.isRefreshing()) {
+                    if (b && !hm.sfl.isFreshing()) {
                         //尾部显示正在刷新
                         hm.loadMoreFoot.setStatus(LoadMoreFoot.STATUE_FRESHING);
                         h.sendEmptyMessageDelayed(1, 500);
@@ -252,7 +265,7 @@ public class HomeFragment extends BaseViewPagerFragment implements IHomeView {
             hm.dynamicsAdapter.addFootView(hm.loadMoreFoot.getContentView(), true);
         }
         hm.loadMoreFoot.setStatus(LoadMoreFoot.STATUE_SUCCESS_FRESHED);
-        hm.sfl.setRefreshing(false);
+        headerReFresh.success();
     }
 
     @Override
@@ -264,6 +277,7 @@ public class HomeFragment extends BaseViewPagerFragment implements IHomeView {
     @Override
     public void onLoadHomeDynamicsFail(String s) {
         hm.loadMoreFoot.setStatus(LoadMoreFoot.STATUE_FAIL_FRESHED);
+        headerReFresh.fail();
     }
 
     @Override
@@ -271,9 +285,4 @@ public class HomeFragment extends BaseViewPagerFragment implements IHomeView {
         return hm;
     }
 
-    @Override
-    public void closeDialog() {
-        super.closeDialog();
-        hm.sfl.setRefreshing(false);
-    }
 }
