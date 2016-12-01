@@ -22,6 +22,9 @@ import static android.animation.ValueAnimator.ofInt;
  * 必须有两个孩子!
  * 第一个孩子作为刷新的头部,头部里面的控件完全自己放置
  * 第二个孩子是你自己的界面
+ *
+ * 问题1:45°∠的时候才可以拦截子类事件,在第一次滑动判断的时候
+ * 问题2:列表在滑动的时候,如果是向上拉视图,那么刷新的部分也要隐藏
  */
 public class CommonRefreshLayout extends ViewGroup {
 
@@ -328,7 +331,7 @@ public class CommonRefreshLayout extends ViewGroup {
      * 判断这个View是不是可以向上滑动
      * 如果这个View是ViewGroup,会自动递归判断其中的孩子是否可以向上滑动
      *
-     * @param mTarget
+     * @param mTarget 目标视图是否可以滚动
      * @return
      */
     public boolean canChildScrollUp(View mTarget) {
@@ -386,7 +389,7 @@ public class CommonRefreshLayout extends ViewGroup {
                 if (getScrollY() > -headerMenuHeight) {
                     //计算拉出来的百分比
                     pullPercent = ((Number) Math.abs(getScrollY())).floatValue() / ((Number) Math.abs(headerMenuHeight)).floatValue();
-                }else{
+                } else {
                     pullPercent = 1f;
                 }
 

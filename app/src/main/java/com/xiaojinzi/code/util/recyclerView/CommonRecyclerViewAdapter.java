@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,10 +18,8 @@ import java.util.Map;
  * 2.支持监听条目点击事件{@link CommonRecyclerViewAdapter#setOnRecyclerViewItemClickListener(OnRecyclerViewItemClickListener)}
  * 3.支持监听条目中的控件的点击事件{@link CommonRecyclerViewAdapter#setOnViewInItemClickListener(OnViewInItemClickListener, int...)}
  * <p/>
- * 注意:在使用这个通用适配器的时候,因为RecyclerView是根据ItemView的type来决定是否复用的,所以在这个里面
- * 所有的HEader都是一个类型{@link CommonRecyclerViewAdapter#HEADER_TYPE}那么久代表HeaderView都是会被复用的,所有暂时会有添加不同的HeadView会出现问题
- * 所有的Foots都是一个类型{@link CommonRecyclerViewAdapter#FOOT_TYPE}那么久代表FootView都是会被复用的,所有暂时会有添加不同的FootView会出现问题
- * 多个头部或者多个尾部会出现复用问题哦
+ * 问题:
+ * 删除尾部视图后添加尾部会出现问题
  */
 public abstract class CommonRecyclerViewAdapter<T> extends RecyclerView.Adapter<CommonRecyclerViewHolder> {
 
@@ -143,7 +142,8 @@ public abstract class CommonRecyclerViewAdapter<T> extends RecyclerView.Adapter<
         mType--;
         footList.add(mType);
         if (isNotify) {
-            notifyItemInserted(getItemCount());
+            int position = getItemCount();
+            notifyItemInserted(position);
         }
     }
 
@@ -187,9 +187,10 @@ public abstract class CommonRecyclerViewAdapter<T> extends RecyclerView.Adapter<
      */
     public void removeFootView(int position, boolean isNotify) {
         int footCounts = getFootCounts();
+        int mPostion = position + getItemCount() - footCounts;
         foots.remove(position);
         if (isNotify) {
-            notifyItemRemoved(position + getItemCount() - footCounts);
+            notifyItemRemoved(mPostion);
         }
     }
 

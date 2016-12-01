@@ -64,10 +64,6 @@ public class FindFragment extends BaseViewPagerFragment implements IFindView {
 
         //添加头部试图
         dynamicsAdapter.addHeaderView(header.initHeader(mContext));
-        dynamicsAdapter.addHeaderView(View.inflate(mContext, R.layout.loadmore, null));
-        dynamicsAdapter.addFootView(View.inflate(mContext, R.layout.loadmore, null));
-        dynamicsAdapter.addFootView(View.inflate(mContext, R.layout.loadmore, null));
-        dynamicsAdapter.addFootView(View.inflate(mContext, R.layout.loadmore, null));
 
         //设置适配器
         rv.setAdapter(dynamicsAdapter);
