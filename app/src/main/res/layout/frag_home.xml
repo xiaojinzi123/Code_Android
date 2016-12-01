@@ -55,34 +55,40 @@
 
     </RelativeLayout>
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tl_category"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rl_titlebar"
-        app:tabGravity="center"
-        app:tabIndicatorColor="@color/red1"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="@color/red1"
-        app:tabTextAppearance="@style/MyCustomTabTextAppearance"
-        app:tabTextColor="@color/black" />
-
     <com.xiaojinzi.code.util.widget.CommonRefreshLayout
         android:id="@+id/sfl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray_six"
-        android:layout_below="@+id/tl_category">
+        android:background="@color/common_app_color"
+        android:layout_below="@+id/rl_titlebar">
 
         <include layout="@layout/refresh" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="14px"
-            android:background="@color/gray_six"
-            android:overScrollMode="never" />
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tl_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:tabGravity="center"
+                app:tabIndicatorColor="@color/red1"
+                app:tabMode="scrollable"
+                app:tabSelectedTextColor="@color/red1"
+                app:tabTextAppearance="@style/MyCustomTabTextAppearance"
+                app:tabTextColor="@color/black" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/gray_six"
+                android:overScrollMode="never" />
+
+        </LinearLayout>
 
     </com.xiaojinzi.code.util.widget.CommonRefreshLayout>
 

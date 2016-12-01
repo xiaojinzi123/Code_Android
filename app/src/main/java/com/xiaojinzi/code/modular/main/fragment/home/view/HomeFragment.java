@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -24,9 +23,9 @@ import com.xiaojinzi.code.modular.main.fragment.home.adapter.HomeAdater;
 import com.xiaojinzi.code.modular.main.fragment.home.presenter.HomePresenter;
 import com.xiaojinzi.code.util.AdapterNotify;
 import com.xiaojinzi.code.util.BaseViewPagerFragment;
+import com.xiaojinzi.code.util.CommonHeaderReFresh;
 import com.xiaojinzi.code.util.recyclerView.CommonRecyclerViewAdapter;
 import com.xiaojinzi.code.util.widget.CommonNineView;
-import com.xiaojinzi.code.util.widget.CommonRefreshLayout;
 
 import java.util.List;
 
@@ -60,7 +59,7 @@ public class HomeFragment extends BaseViewPagerFragment implements IHomeView {
 
     private HomePresenter presenter = new HomePresenter(this);
 
-    private HeaderReFresh headerReFresh;
+    private CommonHeaderReFresh headerReFresh;
 
     @Override
     public int getLayoutId() {
@@ -87,7 +86,7 @@ public class HomeFragment extends BaseViewPagerFragment implements IHomeView {
         hm.rv.setAdapter(hm.dynamicsAdapter);
 
         //
-        headerReFresh = new HeaderReFresh(hm.sfl, hm.sfl){
+        headerReFresh = new CommonHeaderReFresh(hm.sfl, hm.sfl){
             @Override
             public void onHeaderRefresh() {
                 super.onHeaderRefresh();

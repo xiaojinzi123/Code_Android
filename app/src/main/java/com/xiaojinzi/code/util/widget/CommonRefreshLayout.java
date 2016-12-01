@@ -231,12 +231,13 @@ public class CommonRefreshLayout extends ViewGroup {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
 
-        //如果正在刷新,那就什么都别说了,直接拦截,
-        if (currentHeaderMenuRefreshState == STATE_MENU_REFRESH_NOW) {
-            return true;
-        }
-
         int action = event.getAction();
+
+        //如果正在刷新,那就什么都别说了,直接拦截,
+//        if (currentHeaderMenuRefreshState == STATE_MENU_REFRESH_NOW) {
+//            return true;
+//        }
+
         if (action == MotionEvent.ACTION_DOWN) { //按下的时候记录下位置
             downY = event.getY();
             downX = event.getX();
@@ -325,11 +326,15 @@ public class CommonRefreshLayout extends ViewGroup {
 
     /**
      * 判断这个View是不是可以向上滑动
+     * 如果这个View是ViewGroup,会自动递归判断其中的孩子是否可以向上滑动
      *
      * @param mTarget
      * @return
      */
     public boolean canChildScrollUp(View mTarget) {
+
+        boolean result = false;
+
         if (android.os.Build.VERSION.SDK_INT < 14) {
             if (mTarget instanceof AbsListView) {
                 final AbsListView absListView = (AbsListView) mTarget;
@@ -337,11 +342,27 @@ public class CommonRefreshLayout extends ViewGroup {
                         && (absListView.getFirstVisiblePosition() > 0 || absListView.getChildAt(0)
                         .getTop() < absListView.getPaddingTop());
             } else {
-                return ViewCompat.canScrollVertically(mTarget, -1) || mTarget.getScrollY() > 0;
+                result = ViewCompat.canScrollVertically(mTarget, -1) || mTarget.getScrollY() > 0;
             }
         } else {
-            return ViewCompat.canScrollVertically(mTarget, -1);
+            result = ViewCompat.canScrollVertically(mTarget, -1);
         }
+
+        if (!result && mTarget instanceof ViewGroup) {
+            ViewGroup vg = (ViewGroup) mTarget;
+            int childCount = vg.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View view = vg.getChildAt(i);
+                boolean b = canChildScrollUp(view);
+                if (b) {
+                    result = b;
+                    break;
+                }
+            }
+        }
+
+        return result;
+
     }
 
     /**
@@ -358,9 +379,25 @@ public class CommonRefreshLayout extends ViewGroup {
 
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
+
+                float pullPercent = 0f;
+
+                //如果菜单没有完全滑动出来
+                if (getScrollY() > -headerMenuHeight) {
+                    //计算拉出来的百分比
+                    pullPercent = ((Number) Math.abs(getScrollY())).floatValue() / ((Number) Math.abs(headerMenuHeight)).floatValue();
+                }else{
+                    pullPercent = 1f;
+                }
+
+                if (onRefreshListener != null && currentHeaderMenuRefreshState == STATE_MENU_REFRESH_NORMAL) {
+                    onRefreshListener.onPullPercentage(pullPercent);
+                }
+
                 int value = (int) animation.getAnimatedValue();
                 scrollTo(0, value);
             }
+
         });
 
         objectAnimator.start();

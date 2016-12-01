@@ -11,10 +11,10 @@
 
         <ImageView
             android:id="@+id/iv"
-            android:layout_width="32dp"
-            android:layout_height="48dp"
+            android:layout_width="24dp"
+            android:layout_height="36dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="220px"
+            android:layout_marginLeft="260px"
             android:src="@mipmap/arrow_down_back1" />
 
         <ProgressBar
@@ -22,7 +22,7 @@
             android:layout_width="32dp"
             android:layout_height="48dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="220px"
+            android:layout_marginLeft="260px"
             android:visibility="gone" />
 
         <TextView

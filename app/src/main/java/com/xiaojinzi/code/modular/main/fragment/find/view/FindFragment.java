@@ -12,6 +12,8 @@ import com.xiaojinzi.code.modular.main.fragment.find.adapter.FindAdapter;
 import com.xiaojinzi.code.modular.main.fragment.find.presenter.FindPresenter;
 import com.xiaojinzi.code.util.AdapterNotify;
 import com.xiaojinzi.code.util.BaseViewPagerFragment;
+import com.xiaojinzi.code.util.CommonHeaderReFresh;
+import com.xiaojinzi.code.util.widget.CommonRefreshLayout;
 import com.xiaojinzi.viewinjection.annotation.Injection;
 
 import java.util.ArrayList;
@@ -25,6 +27,9 @@ public class FindFragment extends BaseViewPagerFragment implements IFindView {
 
     private Header header = new Header();
 
+    @Injection(R.id.sfl)
+    CommonRefreshLayout sfl;
+
     @Injection(R.id.rv)
     RecyclerView rv;
 
@@ -33,6 +38,8 @@ public class FindFragment extends BaseViewPagerFragment implements IFindView {
     private DynamicsAdapter dynamicsAdapter;
 
     private FindPresenter findPresenter = new FindPresenter(this);
+
+    private CommonHeaderReFresh headerReFresh;
 
     @Override
     public int getLayoutId() {
@@ -65,6 +72,13 @@ public class FindFragment extends BaseViewPagerFragment implements IFindView {
         //设置适配器
         rv.setAdapter(dynamicsAdapter);
 
+        headerReFresh = new CommonHeaderReFresh(sfl, sfl) {
+            @Override
+            public void onHeaderRefresh() {
+                super.onHeaderRefresh();
+            }
+        };
+
     }
 
     /**
@@ -76,6 +90,14 @@ public class FindFragment extends BaseViewPagerFragment implements IFindView {
 
         header.loadAdvAndPopularStar();
         findPresenter.getDynamics();
+
+    }
+
+    @Override
+    public void setOnlistener() {
+        super.setOnlistener();
+
+        sfl.setOnRefreshListener(headerReFresh);
 
     }
 

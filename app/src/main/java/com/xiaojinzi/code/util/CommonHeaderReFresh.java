@@ -1,4 +1,4 @@
-package com.xiaojinzi.code.modular.main.fragment.home.view;
+package com.xiaojinzi.code.util;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -12,7 +12,7 @@ import com.xiaojinzi.code.util.widget.CommonRefreshLayout;
  * Created by cxj on 2016/11/22.
  * 抽取出下拉刷新更新刷新视图ui的代码
  */
-public class HeaderReFresh implements CommonRefreshLayout.OnRefreshListener {
+public class CommonHeaderReFresh implements CommonRefreshLayout.OnRefreshListener {
 
     private ImageView iv = null;
 
@@ -24,7 +24,7 @@ public class HeaderReFresh implements CommonRefreshLayout.OnRefreshListener {
 
     private View contentView;
 
-    public HeaderReFresh(View contentView, CommonRefreshLayout crl) {
+    public CommonHeaderReFresh(View contentView, CommonRefreshLayout crl) {
         this.contentView = contentView;
         this.crl = crl;
         iv = (ImageView) contentView.findViewById(R.id.iv);

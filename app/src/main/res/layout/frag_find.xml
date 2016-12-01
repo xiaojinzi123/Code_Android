@@ -20,11 +20,22 @@
 
     </RelativeLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv"
+    <com.xiaojinzi.code.util.widget.CommonRefreshLayout
+        android:id="@+id/sfl"
         android:layout_width="match_parent"
-        android:background="@color/gray_six"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rl_titlebar" />
+        android:layout_below="@+id/rl_titlebar"
+        android:background="@color/common_app_color">
+
+        <include layout="@layout/refresh" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rl_titlebar"
+            android:background="@color/gray_six" />
+
+    </com.xiaojinzi.code.util.widget.CommonRefreshLayout>
 
 </RelativeLayout>
