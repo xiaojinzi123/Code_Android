@@ -21,12 +21,12 @@ android {
 
 repositories {
     flatDir {
-        dir 'libs' //就是你放aar的目录地址
+        dir '../smscheck/libs' //就是你放aar的目录地址
     }
 }
 
 dependencies {
-    //compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.1'
     //引入自己的图片库
