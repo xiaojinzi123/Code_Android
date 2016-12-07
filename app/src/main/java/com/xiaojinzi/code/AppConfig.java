@@ -11,9 +11,7 @@ import java.io.IOException;
 
 import cn.smssdk.SMSSDK;
 import okhttp3.FormBody;
-import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
-import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -30,7 +28,8 @@ public class AppConfig {
     /**
      * 项目的访问根路径
      */
-    public static final String APPPREFIX = "http://192.168.1.101:8080/code/app/";
+    public static final String APPPREFIX = "http://192.168.10.102:8080/code/app/";
+//    public static final String APPPREFIX = "http://192.168.1.101:8080/code/app/";
 //    public static final String APPPREFIX = "http://192.168.137.1:8080/code/app/";
 
     /**
@@ -71,6 +70,8 @@ public class AppConfig {
 
                             //拿到请求网址
                             String url = request.url().toString();
+
+                            System.out.println("url = " + url);
 
                             //如果不是注册登录的接口
                             if (!url.endsWith("user/login") && !url.endsWith("user/register")) {
